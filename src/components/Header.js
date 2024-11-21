@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
@@ -19,11 +20,11 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export default function Header() {
 
-    const {items} = useContext(CartContext);
+    const { items } = useContext(CartContext);
 
-    const carQuantity = items.length;
+    const CartQuantity = items.reduce((total, item) => total + item.quantity, 0);
     return (
-        <div>
+        <>
             <header id="main-header">
                 <div id="main-title">
                     <h1>Elegant Shop</h1>
@@ -31,13 +32,13 @@ export default function Header() {
                 <p>
                     <Link to="/checkout">
                         <IconButton aria-label="cart" size="large">
-                            <StyledBadge badgeContent={carQuantity}>
-                                <ShoppingCartIcon size="large"/>
+                            <StyledBadge badgeContent={CartQuantity}>
+                                <ShoppingCartIcon size="large" />
                             </StyledBadge>
                         </IconButton>
                     </Link>
                 </p>
             </header>
-        </div>
+        </>
     );
 }
