@@ -22,7 +22,7 @@ export default function Header() {
 
     const { items } = useContext(CartContext);
 
-    const CartQuantity = items.reduce((total, item) => total + item.quantity, 0);
+    const CartQuantity = items.length;
     return (
         <>
             <header id="main-header">

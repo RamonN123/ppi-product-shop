@@ -82,17 +82,12 @@ export default function CartContextProvider({ children }) {
                     quantity: existingCartItem.quantity - 1,
                 }
                 updatedItems[existingCartItemIndex] = updatedItem;
-            } else {
-                const product = action.payload.products.find(
-                    (product) => product.id === action.payload.id
-                );
-                updatedItems.push({
-                    id: action.payload.id,
-                    thumbnail: product.thumbnail,
-                    title: product.title,
-                    price: product.price,
-                    quantity: 1,
-                });
+
+                if (updatedItem.quantity < 1) {
+                    updatedItems.splice(existingCartItemIndex, 1);
+                } else {
+                    updatedItems[existingCartItemIndex] = updatedItem;
+                }
             }
 
             return { items: updatedItems };

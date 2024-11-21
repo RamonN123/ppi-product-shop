@@ -20,6 +20,7 @@ export default function Checkout() {
 {/* id para css */}
 
             <ul id="products" >
+                <div className="checkout-items">
                 {items.length > 0 ? (
                     items.filter(product => product.quantity > 0).map((product) => (
                         <li key={product.id}>
@@ -28,10 +29,10 @@ export default function Checkout() {
                     ))
                 ) : (
                     <p>No items in cart!</p>
-                )}
+                )}</div>
             </ul>
 
-                <h1>
+                <h1 id="cart-total-price">
                     Valor total da compra: ${totalprice.toFixed(2)}
                 </h1>
             <Link to="/" className="product-actions">
