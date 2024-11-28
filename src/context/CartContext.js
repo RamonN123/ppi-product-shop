@@ -22,9 +22,7 @@ export default function CartContextProvider({ children }) {
         async function getProducts() {
             setLoading(true);
             const { data: products, error } = await supabase.from("products").select();
-            if (products.length > 0
-
-            ) {
+            if (products.length > 0) {
                 setProducts(products)
             } else {
                 setError('Fetcing products failed! ${error}');
@@ -167,7 +165,7 @@ export default function CartContextProvider({ children }) {
         updateItemQuantity: handleUpdateCartItemQuantity,
         subItemToCart: handleSubItemToCart
     };
-    
+
 
     return <CartContext.Provider value={ctx}>
         {children}
